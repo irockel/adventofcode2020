@@ -15,3 +15,6 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 - highest boarding pass is 806
 - my boarding pass is 562
 
+# Results of Day 6
+- customs forms sum up to 6430 
+- customs forms where all selected sum up to 3125
