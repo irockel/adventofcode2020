@@ -18,3 +18,7 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 # Results of Day 6
 - customs forms sum up to 6430 
 - customs forms where all selected sum up to 3125
+
+# Results of Day 7
+- rules with different outer color: 242
+- contained bags in shiny gold: 176035
