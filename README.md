@@ -22,3 +22,7 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 # Results of Day 7
 - rules with different outer color: 242
 - contained bags in shiny gold: 176035
+
+# Results of Day 8
+- acc right before endless looping: 1586
+- acc if program terminates normally: 703
