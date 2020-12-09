@@ -26,3 +26,7 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 # Results of Day 8
 - acc right before endless looping: 1586
 - acc if program terminates normally: 703
+
+# Results of Day 9
+- first defunct value: 507622668
+- min + max of contiguous range: 76688505
