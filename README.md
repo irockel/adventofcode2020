@@ -33,4 +33,4 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 
 # Results of Day 10
 - Product of 1s's and 3's: 1690
-
+- All possible combinations: 5289227976704
