@@ -30,3 +30,7 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 # Results of Day 9
 - first defunct value: 507622668
 - min + max of contiguous range: 76688505
+
+# Results of Day 10
+- Product of 1s's and 3's: 1690
+
