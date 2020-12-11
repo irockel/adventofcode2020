@@ -35,6 +35,6 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 - Product of 1s's and 3's: 1690
 - All possible combinations: 5289227976704
 
-# Results of Day 10
+# Results of Day 11
 - occupied seats in the end: 2277
 - occupied seats in the end (with changed rules): 2066
