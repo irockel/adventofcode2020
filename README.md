@@ -38,3 +38,7 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 # Results of Day 11
 - occupied seats in the end: 2277
 - occupied seats in the end (with changed rules): 2066
+
+# Results of Day 12
+- Simple Manhattan Distance: 441
+- Waypoint Manhattan Distance: 40014
