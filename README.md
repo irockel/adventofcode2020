@@ -42,3 +42,7 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 # Results of Day 12
 - Simple Manhattan Distance: 441
 - Waypoint Manhattan Distance: 40014
+
+# Result of Day 13
+- Earliest BusID multiplied by the waiting time: 6568
+- Failed to solve Part II so far!
