@@ -43,10 +43,14 @@ Advent of Code 2020 Puzzles resolved using Golang, https://adventofcode.com
 - Simple Manhattan Distance: 441
 - Waypoint Manhattan Distance: 40014
 
-# Result of Day 13
+# Results of Day 13
 - Earliest BusID multiplied by the waiting time: 6568
 - Failed to solve Part II so far!
 
-# Result of Day 14
+# Results of Day 14
 - Sum of all memory registers: 6317049172545
 - Sum of all memory registers (apply mask to registers): 3434009980379
+
+# Results of Day 15
+- The stop value in the 2020 round is: 852
+- The stop value in the 30000000 round is: 6007666
