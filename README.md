@@ -22,4 +22,4 @@ Each participant has invidual results, so these only fit for my own input data
 | Day 13 |          6568 |               |
 | Day 14 | 6317049172545 | 3434009980379 |
 | Day 15 |           852 |       6007666 |
-|--------|---------------|---------------|
+| Day 16 |         30869 | 4381476149273 |
