@@ -12,7 +12,7 @@ Each participant has invidual results, so these only fit for my own input data
 | Day 3  |               |               | Day 16 |         30869 | 4381476149273   |
 | Day 4  |               |               | Day 17 |               |                 |
 | Day 5  |           806 |           562 | Day 18 | 1402255785165 | 119224703255966 |
-| Day 6  |          6430 |          3125 |
+| Day 6  |          6430 |          3125 | Day 19 |           200 |             407 |
 | Day 7  |           242 |        176035 |
 | Day 8  |          1586 |           703 |
 | Day 9  |     507622668 |      76688505 |
