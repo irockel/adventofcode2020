@@ -1,4 +1,7 @@
-// read input file input.txt and find all messages matching rule "0"
+// read input file input.txt and find all messages matching rule 42 and 31 combinations
+// in contrast to first part the input data now contains two looping rules
+// 8: 42 | 42 8 
+// 11: 42 31 | 42 11 31
 package main
 
 import (
@@ -127,6 +130,17 @@ func getMessagesForRule(messages []string, rules map[int]ruleDef, ruleID int) ma
 	return result
 }
 
+//
+// create all possible starter rules generate from the following structure
+//              0
+//           /     \
+//          8      11
+//          |       |
+//        42 8   42 11 31
+// for the matching the top rules 0, 8, 11 are stripped away and ignored
+// and instead a list of possible combinations of 42 and 31 rules are generated
+// and used as starting rules
+//
 func createStartSet() []ruleDef {
 	startSet := []ruleDef{}
 
