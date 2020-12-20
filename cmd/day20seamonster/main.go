@@ -1,5 +1,6 @@
 // read input file input.txt and try to put the tiles together to an image
 // the tiles are defined like puzzle elements
+// try to find the hidden sea monster
 package main
 
 import (
@@ -19,9 +20,11 @@ func main() {
 
 	tiles = findMatchingTiles(tiles)
 
-	edgeValues := calculateEdgeValues(tiles)
+	image := resolveImage(tiles)
 
-	fmt.Printf("The product of the corner ids is: %d\n", edgeValues)
+	hashes := findSeamonster(image)
+
+	fmt.Printf("The amount of hashes aside the sea monster is: %d\n", hashes)
 }
 
 //
@@ -231,39 +234,21 @@ func checkOtherTile(border [2]int, otherTile *tileDef, tileID int) int {
 }
 
 //
-// get product of the four corner tiles' id
+// resolve the image from the given tile set
 //
-func calculateEdgeValues(tiles map[int]tileDef) int {
-	result := 1
-	for _, tile := range tiles {
-		if isCorner(tile) {
-			result *= tile.id
-		}
-	}
-	return result
+func resolveImage(tiles map[int]tileDef) []string {
+	return []string{}
 }
 
 //
-// check if the given tile is a corner tile with
-// just two linked tiles.
+// try to find the sea monster which has the pattern
+//                   # 
+// #    ##    ##    ###
+//  #  #  #  #  #  #   
 //
-func isCorner(tile tileDef) bool {
-	var activeCorners int
-	if tile.leftTileID > 0 {
-		activeCorners++
-	}
+// and marked the used hashes, count all remaining hashes
+// and return them
+func findSeamonster([]string) int {
 
-	if tile.rightTileID > 0 {
-		activeCorners++
-	}
-
-	if tile.topTileID > 0 {
-		activeCorners++
-	}
-
-	if tile.bottomTileID > 0 {
-		activeCorners++
-	}
-
-	return activeCorners == 2
+	return 0
 }
