@@ -45,8 +45,8 @@ type tileDef struct {
 
 	// linked tiles
 	leftTileID   int
-	rightTileID  int
 	topTileID    int
+	rightTileID  int
 	bottomTileID int
 }
 
@@ -55,9 +55,9 @@ type tileDef struct {
 // values as map keys
 //
 func readImageTiles() map[int]tileDef {
-	fmt.Println("reading input.txt")
+	fmt.Println("reading inputtest.txt")
 
-	file, err := os.Open("./input.txt")
+	file, err := os.Open("./inputtest.txt")
 	if err != nil {
 		fmt.Printf(" > Failed opening file with error: %v\n", err)
 		return nil
@@ -237,14 +237,164 @@ func checkOtherTile(border [2]int, otherTile *tileDef, tileID int) int {
 // resolve the image from the given tile set
 //
 func resolveImage(tiles map[int]tileDef) []string {
-	return []string{}
+	used := 0
+	image := []string{}
+	leftTile := findFirstCorner(tiles)
+	fmt.Println(leftTile.id)
+	currentTile := leftTile
+	imagePos := 0
+	for used < len(tiles) {
+		for {
+			fmt.Printf(" %d ", currentTile.id)
+			for pos, line := range currentTile.data {
+				if len(image) <= imagePos+pos {
+					image = append(image, strings.TrimSpace(line))
+				} else {
+					image[imagePos+pos] = image[imagePos+pos] + " " + strings.TrimSpace(line)
+				}
+			}
+			used++
+			if currentTile.rightTileID > 0 {
+				lastID := currentTile.id
+				lastBorders := currentTile.right
+				currentTile = tiles[currentTile.rightTileID]
+
+				switch lastID {
+				case currentTile.rightTileID : 
+					if currentTile.right[1] == lastBorders[0] {
+						// need to be turned two times
+						currentTile = turnRightTile(currentTile)
+						currentTile = turnRightTile(currentTile)
+					} else {
+						// it's just flipped around
+						currentTile = flipTile(currentTile)
+					}
+				case currentTile.topTileID :
+					currentTile = turnLeftTile(currentTile)
+				case currentTile.bottomTileID :
+					currentTile = turnRightTile(currentTile)
+				}
+			} else {
+				break
+			}
+		}
+		fmt.Println()
+		imagePos += len(image)
+		if leftTile.bottomTileID > 0 {
+			lastID := currentTile.id
+			lastBorders := currentTile.bottom
+			leftTile = tiles[leftTile.bottomTileID]
+
+			switch lastID {
+				case leftTile.bottomTileID : 
+					if leftTile.bottom[1] == lastBorders[0] {
+						// need to be turned two times
+						leftTile = turnRightTile(leftTile)
+						leftTile = turnRightTile(leftTile)
+					} else {
+						// it's just flipped around
+						leftTile = flipTile(leftTile)
+					}
+				case leftTile.topTileID :
+					leftTile = turnLeftTile(leftTile)
+				case currentTile.bottomTileID :
+					leftTile = turnRightTile(leftTile)
+				}
+
+			currentTile = leftTile
+		}
+	}
+
+	for _, line := range image {
+		fmt.Println(line)
+	}
+
+	return image
+}
+
+func flipTile(tile tileDef) tileDef {
+	flippedTile := tile
+	flippedTile.data = []string{}
+	for _, line := range tile.data {
+		flippedLine := ""
+		for i := 0; i < len(line); i++ {
+			flippedLine = string(line[i]) + flippedLine 
+		}
+		flippedTile.data = append(flippedTile.data, flippedLine)
+	}
+
+	// flip references
+	flippedTile.left = tile.right
+	flippedTile.right = tile.left
+	flippedTile.leftTileID = tile.rightTileID
+	flippedTile.rightTileID = tile.leftTileID
+
+	return flippedTile
+}
+
+func turnLeftTile(tile tileDef) tileDef {
+	turnedTile := tile
+	turnedTile.data = []string{}
+
+	for i := 0; i < len(tile.data[0]); i++ {
+		turnedLine := ""
+		for j := 0; j < len(tile.data); j++ {
+			turnedLine = string(tile.data[j][i]) + turnedLine
+		}
+
+
+	}
+	turnedTile.left = tile.top
+	turnedTile.top = tile.right
+	turnedTile.right = tile.bottom
+	turnedTile.bottom = tile.left
+	turnedTile.leftTileID = tile.topTileID
+	turnedTile.topTileID = tile.rightTileID
+	turnedTile.rightTileID = tile.bottomTileID
+	turnedTile.bottomTileID = tile.leftTileID
+	
+	return turnedTile
+}
+
+func turnRightTile(tile tileDef) tileDef {
+	turnedTile := tile
+	
+	for i := 0; i < len(tile.data[0]); i++ {
+		turnedLine := ""
+		for j := 0; j < len(tile.data); j++ {
+			turnedLine = turnedLine + string(tile.data[j][i])
+		}
+	}
+	turnedTile.left = tile.bottom
+	turnedTile.top = tile.left
+	turnedTile.right = tile.top
+	turnedTile.bottom = tile.right
+	turnedTile.leftTileID = tile.bottomTileID
+	turnedTile.topTileID = tile.leftTileID
+	turnedTile.rightTileID = tile.topTileID
+	turnedTile.bottomTileID = tile.rightTileID
+
+	return turnedTile
+}
+
+//
+// find the first corner to start with
+//
+func findFirstCorner(tiles map[int]tileDef) tileDef {
+	for _, tile := range tiles {
+		if tile.leftTileID == 0 && tile.topTileID == 0 && tile.rightTileID > 0 && tile.bottomTileID > 0 {
+			return tile
+		}
+	}
+
+	return tileDef{}
 }
 
 //
 // try to find the sea monster which has the pattern
-//                   # 
+//                   #
 // #    ##    ##    ###
-//  #  #  #  #  #  #   
+//  #  #  #  #  #  #
 //
 // and marked the used hashes, count all remaining hashes
 // and return them
